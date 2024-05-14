@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blurred Background with Centered Image</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background: #000; /* Fallback background color */
+        }
+
+        .background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: url('Firefly Banner.png') no-repeat center center/cover;
+            filter: blur(20px);
+            transform: scale(1.05); /* To cover any edge artifacts from blur */
+        }
+
+        .background::before { /* Add vignette effect on background image */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .firefly-banner-image {
+            position: absolute;
+            box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.7); /* Outer black shadow */
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        #image1 {
+            top: 50%;
+            left: 50%;
+        }
+
+        #image2 {
+            top: 50%;
+            left: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-container">
+        <div class="background"></div>
+    </div>
+    <img id="image1" src="Firefly Banner.png" alt="Firefly Banner" class="firefly-banner-image">
+    <img id="image2" src="Firefly Banner.png" alt="Firefly Banner" class="firefly-banner-image">
+</body>
+</html>

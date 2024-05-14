@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honkai Star Rail Pull Website</title>
+    <style>
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        @keyframes animateReward {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header {
+            position: fixed; /* Ensure the header is always at the top */
+            width: 100%;
+            height: 10px;
+            background-color: #000000a1;
+            color: #fff;
+            padding: 20px 20px 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.5s ease, transform 0.5s ease;
+            animation: slideDown 0.5s ease forwards;
+            z-index: 1000; /* Ensure the header is on top of other elements */
+        }
+
+        header:hover {
+            background-color: #000000e6; /* Change background color on hover */
+        }
+
+        .logo {
+            font-family: 'Arial';
+            font-size: 32px;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            margin-left: 20px; /* Adjusted for smaller screens */
+        }
+
+
+        .left {
+            position: fixed; /* Fix the left segment to the left side */
+            top: 0;
+            left: 0px;
+            margin-top: 50px;
+            background: linear-gradient(to right, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+            text-align: center;
+            justify-content: left;
+            width: 350px;
+            height: 192vh;
+            padding: 20px;
+            color: rgb(255, 255, 255);
+            backdrop-filter: blur(30px);
+            z-index: 2; 
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Arrange items vertically */
+            align-items: center; /* Center items horizontally */
+            gap: 20px; /* Add space between images */
+        }
+
+        /* Add this to style images within the left container */
+        .left-img {
+            width: 100%; /* Make images responsive */
+            max-width: 100%; /* Prevent images from exceeding container width */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px; /* Optional: Add rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: Add shadow */
+        }
+
+        .background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: url('Character_Firefly_Introduction.webp') no-repeat center center/cover;
+            filter: blur(20px);
+            transform: scale(1.05); /* To cover any edge artifacts from blur */
+        }
+
+        .background::before { /* Add vignette effect on background image */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .firefly-banner-container {
+            position: absolute;
+            top: 13%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            transform: scale(0.9);
+            text-align: center; /* Align buttons horizontally */
+        }
+
+        .firefly-banner-image {
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.7); /* Outer black shadow */
+        }
+
+        .warp-buttons {
+            margin-top: 10px; /* Adjust the spacing between the image and buttons */
+            display: flex;
+            justify-content: flex-end; /* Align buttons to the right */
+        }
+
+        .warp-button-ind {
+            margin-left: 10px; /* Adjust the spacing between the buttons */
+            padding: 10px 20px;
+            border-radius: 20px; /* Rounded corners */
+            background-color: #ffffff;
+            color: #000000; /* Button text color */
+            border: 2px solid #000000; /* Button outline */
+            font-size: 16px; 
+            cursor: pointer; 
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+            position: relative; 
+            background-image: url('Item_Star_Rail_Special_Pass.webp');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: left center; /* Align the image to the left */
+            padding-left: 50px; /* Adjust the space for the image */
+        }
+
+        .warp-button-ind:hover {
+            background-color: #cccccc; /* Button background color on hover */
+            color: #000000; /* Button text color on hover */
+        }
+
+        .special-pass {
+            position: absolute;
+            top: -50px;
+            right: 0px; /* Adjusted to align with the right side */
+            padding: 5px 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 5px;
+            font-size: 14px;
+            border-radius: 20px; /* Rounded corners */
+            background-color: #0000007e; 
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            z-index: 3; /* Ensure the text box is on top of the image */
+            background-image: url('Item_Star_Rail_Special_Pass.webp');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: left center; /* Align the image to the left */
+            padding-left: 70px; /* Adjust the space for the image */
+            transform: scale(1.1);
+        }
+
+        .reward-image.animate-reward {
+            animation: animateReward 0.5s ease-in-out;
+        }
+
+        .fade-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('pull bg.png') no-repeat center center/cover;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+            z-index: 4; /* Ensure it is on top of other elements */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Align items vertically */
+        }
+
+        .next-button {
+            display: none; /* Initially hidden */
+            padding: 10px 20px;
+            border-radius: 20px;
+            background-color: #ffffff;
+            color: #000000;
+            border: 2px solid #000000;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            margin-top: 20px; /* Space between the image and the button */
+        }
+
+        .next-button:hover {
+            background-color: #cccccc;
+        }
+
+        .reward-image {
+            display: none; /* Initially hidden */
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Dalmanski's Honkai Star Rail Pull Banner</a>
+    </header>
+    <div class="left">
+        <img src="hsr robin banner side.jpg" class="left-img">
+        <img src="hsr jade banner side.webp" class="left-img">
+        <img src="hsr acheron banner side.jpg" class="left-img">
+    </div>    
+    <div class="background-container">
+        <div class="background"></div>
+    </div>
+    <div class="firefly-banner-container">
+        <div class="special-pass">100</div>
+        <img src="Character_Firefly_Introduction.webp" alt="Firefly Banner" class="firefly-banner-image">
+        <div class="warp-buttons">
+            <button class="warp-button-ind" id="warp1">Warp x 1</button>
+            <button class="warp-button-ind" id="warp10">Warp x 10</button>
+        </div>
+    </div>
+
+    <script>
+        let guaranteedPull = 0;
+        
+        // Function to animate the reward image
+        function animateReward(rewardImage) {
+            // Add the animate-reward class to trigger the animation
+            rewardImage.classList.add('animate-reward');
+    
+            // Remove the animate-reward class after the animation completes
+            rewardImage.addEventListener('animationend', function() {
+                rewardImage.classList.remove('animate-reward');
+            });
+        }
+    
+        function pull(rewardImage, nextButton) {
+            guaranteedPull++;
+            animateReward(rewardImage);
+    
+            if (Math.random() < 0.005 || guaranteedPull >= 90) {
+                // Add video name "5 star vid.mp4" (Wait until the video end)
+                var video = document.createElement('video');
+                video.src = '5 star vid.mp4';
+                video.autoplay = true;
+                video.onended = function() {
+                    // After the video ends, display the appropriate reward image
+                    if (Math.random() < 0.5) {
+                        rewardImage.style.width = '50%'; // Set the width to 50% of its original size
+                        rewardImage.style.height = 'auto'; // Maintain aspect ratio by setting height to auto
+                        rewardImage.src = 'Firefly guaranteed.png';
+                    } else {
+                        rewardImage.style.width = '50%'; // Set the width to 50% of its original size
+                        rewardImage.style.height = 'auto'; // Maintain aspect ratio by setting height to auto
+                        rewardImage.src = 'Character_Yanqing_Splash_Art.webp';
+                    }
+                    // Add sounds name "5 star end sound effect.MP3"
+                    var audio = new Audio('5 star end sound effect.MP3');
+                    audio.play();
+                    animateReward(rewardImage);
+                    document.body.removeChild(video);
+                    // Show the "Next" button again
+                    nextButton.style.display = 'block';
+                };
+                document.body.appendChild(video);
+                guaranteedPull = 0;
+    
+                // Hide the "Next" button until the video ends
+                nextButton.style.display = 'none';
+            } else {
+                // Add sounds name "claim pull Sound effect.MP3"
+                var audio = new Audio('claim pull Sound effect.MP3');
+                audio.play();
+                // From 1 - 3
+                let chance = Math.floor(Math.random() * 4) + 1;
+                if (chance === 1){
+                    rewardImage.src = 'Light_Cone_Cornucopia.webp';
+                } else if (chance === 2){
+                    rewardImage.src = 'Light_Cone_Adversarial.webp';
+                } else if (chance === 3){
+                    rewardImage.src = 'Light_Cone_Amber.webp';
+                } else if (chance === 4){
+                    rewardImage.src = 'Light_Cone_Collapsing_Sky.webp';
+                }
+            }
+        }
+    
+        // Function to create and show the fade-in overlay with the "Next" button
+        function showFadeOverlay(clicksNeeded) {
+            // Create the overlay element
+            var overlay = document.createElement('div');
+            overlay.className = 'fade-overlay';
+    
+            // Create the reward image
+            var rewardImage = document.createElement('img');
+            rewardImage.className = 'reward-image';
+            pull(rewardImage, nextButton);
+    
+            // Create the "Next" button
+            var nextButton = document.createElement('button');
+            nextButton.className = 'next-button';
+            nextButton.textContent = 'Next';
+    
+            // Add click event listener to the "Next" button
+            nextButton.addEventListener('click', function() {
+                rewardImage.style.width = '23%'; // Set the width to 50% of its original size
+                rewardImage.style.height = 'auto'; // Maintain aspect ratio by setting height to auto
+                clickCount++;
+
+                // Check if the required number of clicks has been reached
+                if (clickCount > clicksNeeded - 1) {
+                    // Fade out the overlay
+                    overlay.style.animation = 'fadeOut 0.5s forwards';
+
+                    // Hide the image and button
+                    rewardImage.style.display = 'none';
+                    nextButton.style.display = 'none';
+
+                    // Remove the overlay after the fade-out animation
+                    overlay.addEventListener('animationend', function() {
+                        document.body.removeChild(overlay);
+                        clickCount = 0; // Reset click count when overlay is removed
+                    });
+
+                } else {
+                    pull(rewardImage, nextButton); // Update reward image for the next click
+                }
+            });
+    
+            // Add the image and button to the overlay
+            overlay.appendChild(rewardImage);
+            overlay.appendChild(nextButton);
+    
+            // Add the overlay to the body
+            document.body.appendChild(overlay);
+    
+            // Show the image and button after the fade-in animation
+            setTimeout(function() {
+                rewardImage.style.display = 'block';
+                nextButton.style.display = 'block';
+            }, 500); // Delay should match the fade-in duration
+    
+            // Variable to track the number of clicks
+            var clickCount = 0;
+        }
+    
+        // Get the special pass element
+        var specialPass = document.querySelector('.special-pass');
+    
+        // Get the warp buttons
+        var warp1Button = document.getElementById('warp1');
+        var warp10Button = document.getElementById('warp10');
+    
+        // Add click event listeners to the warp buttons
+        warp1Button.addEventListener('click', function() {
+            // Decrease the special pass value by 1
+            var currentValue = parseInt(specialPass.textContent);
+            if (currentValue > 0){
+                specialPass.textContent = currentValue - 1;
+                showFadeOverlay(1); // Show the fade overlay with "Next" button for 1 click
+            }
+        });
+    
+        warp10Button.addEventListener('click', function() {
+            // Decrease the special pass value by 10
+            var currentValue = parseInt(specialPass.textContent);
+            if (currentValue >= 10){
+                specialPass.textContent = currentValue - 10;
+                showFadeOverlay(10); // Show the fade overlay with "Next" button for 10 clicks
+            }
+        });
+    </script>
+    
+</body>
+</html>

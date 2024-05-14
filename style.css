@@ -1,0 +1,232 @@
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes animateReward {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+}
+
+header {
+    position: fixed; /* Ensure the header is always at the top */
+    width: 100%;
+    height: 10px;
+    background-color: #000000a1;
+    color: #fff;
+    padding: 20px 20px 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.5s ease, transform 0.5s ease;
+    animation: slideDown 0.5s ease forwards;
+    z-index: 1000; /* Ensure the header is on top of other elements */
+}
+
+header:hover {
+    background-color: #000000e6; /* Change background color on hover */
+}
+
+.logo {
+    font-family: 'Arial';
+    font-size: 32px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 20px; /* Adjusted for smaller screens */
+}
+
+
+.left {
+    position: fixed; /* Fix the left segment to the left side */
+    top: 0;
+    left: 0px;
+    margin-top: 50px;
+    background: linear-gradient(to right, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+    text-align: center;
+    justify-content: left;
+    width: 350px;
+    height: 192vh;
+    padding: 20px;
+    color: rgb(255, 255, 255);
+    backdrop-filter: blur(30px);
+    z-index: 2; 
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange items vertically */
+    align-items: center; /* Center items horizontally */
+    gap: 20px; /* Add space between images */
+}
+
+/* Add this to style images within the left container */
+.left-img {
+    width: 100%; /* Make images responsive */
+    max-width: 100%; /* Prevent images from exceeding container width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: Add rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: Add shadow */
+}
+
+.background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: url('Character_Firefly_Introduction.webp') no-repeat center center/cover;
+    filter: blur(20px);
+    transform: scale(1.05); /* To cover any edge artifacts from blur */
+}
+
+.background::before { /* Add vignette effect on background image */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.7) 100%);
+    z-index: 1;
+}
+
+.firefly-banner-container {
+    position: absolute;
+    top: 13%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    transform: scale(0.9);
+    text-align: center; /* Align buttons horizontally */
+}
+
+.firefly-banner-image {
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.7); /* Outer black shadow */
+}
+
+.warp-buttons {
+    margin-top: 10px; /* Adjust the spacing between the image and buttons */
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
+.warp-button-ind {
+    margin-left: 10px; /* Adjust the spacing between the buttons */
+    padding: 10px 20px;
+    border-radius: 20px; /* Rounded corners */
+    background-color: #ffffff;
+    color: #000000; /* Button text color */
+    border: 2px solid #000000; /* Button outline */
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+    position: relative; 
+    background-image: url('Item_Star_Rail_Special_Pass.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center; /* Align the image to the left */
+    padding-left: 50px; /* Adjust the space for the image */
+}
+
+.warp-button-ind:hover {
+    background-color: #cccccc; /* Button background color on hover */
+    color: #000000; /* Button text color on hover */
+}
+
+.special-pass {
+    position: absolute;
+    top: -50px;
+    right: 0px; /* Adjusted to align with the right side */
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    font-size: 14px;
+    border-radius: 20px; /* Rounded corners */
+    background-color: #0000007e; 
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    z-index: 3; /* Ensure the text box is on top of the image */
+    background-image: url('Item_Star_Rail_Special_Pass.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center; /* Align the image to the left */
+    padding-left: 70px; /* Adjust the space for the image */
+    transform: scale(1.1);
+}
+
+.reward-image.animate-reward {
+    animation: animateReward 0.5s ease-in-out;
+}
+
+.fade-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('pull bg.png') no-repeat center center/cover;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+    z-index: 4; /* Ensure it is on top of other elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Align items vertically */
+}
+
+.next-button {
+    display: none; /* Initially hidden */
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 20px; /* Space between the image and the button */
+}
+
+.next-button:hover {
+    background-color: #cccccc;
+}
+
+.reward-image {
+    display: none; /* Initially hidden */
+    max-width: 80%;
+    max-height: 80%;
+}
