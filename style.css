@@ -230,6 +230,7 @@ header:hover {
 }
 
 .next-button {
+    width: 150px;
     display: none; /* Initially hidden */
     padding: 10px 20px;
     border-radius: 20px;
