@@ -12,6 +12,9 @@ let guaranteedPull = 0;
         }
     
         function pull(rewardImage, nextButton) {
+
+            let chance = 0;
+
             guaranteedPull++;
             animateReward(rewardImage);
     
@@ -21,15 +24,29 @@ let guaranteedPull = 0;
                 video.src = '5 star vid.mp4';
                 video.autoplay = true;
                 video.onended = function() {
+                    rewardImage.style.width = '50%'; // Set the width to 50% of its original size
+                    rewardImage.style.height = 'auto'; // Maintain aspect ratio by setting height to auto
                     // After the video ends, display the appropriate reward image
                     if (Math.random() < 0.5) {
-                        rewardImage.style.width = '50%'; // Set the width to 50% of its original size
-                        rewardImage.style.height = 'auto'; // Maintain aspect ratio by setting height to auto
                         rewardImage.src = 'Firefly guaranteed.png';
                     } else {
-                        rewardImage.style.width = '50%'; // Set the width to 50% of its original size
-                        rewardImage.style.height = 'auto'; // Maintain aspect ratio by setting height to auto
-                        rewardImage.src = 'Character_Yanqing_Splash_Art.webp';
+                        // From 1 - 7
+                        chance = Math.floor(Math.random() * 8) + 1;
+                        if (chance === 1){
+                            rewardImage.src = 'Splash art\\Character_Bailu_Splash_Art.webp';
+                        } else if (chance === 2){
+                            rewardImage.src = 'Splash art\\Character_Bronya_Splash_Art.webp';
+                        } else if (chance === 3){
+                            rewardImage.src = 'Splash art\\Character_Clara_Splash_Art.webp';
+                        } else if (chance === 4){
+                            rewardImage.src = 'Splash art\\Character_Gepard_Splash_Art.webp';
+                        } else if (chance === 5){
+                            rewardImage.src = 'Splash art\\Character_Himeko_Splash_Art.webp';
+                        } else if (chance === 6){
+                            rewardImage.src = 'Splash art\\Character_Welt_Splash_Art.webp';
+                        } else if (chance === 7){
+                            rewardImage.src = 'Splash art\\Character_Yanqing_Splash_Art.webp';
+                        }                
                     }
                     // Add sounds name "5 star end sound effect.MP3"
                     var audio = new Audio('5 star end sound effect.MP3');
@@ -49,15 +66,15 @@ let guaranteedPull = 0;
                 var audio = new Audio('claim pull Sound effect.MP3');
                 audio.play();
                 // From 1 - 3
-                let chance = Math.floor(Math.random() * 4) + 1;
+                chance = Math.floor(Math.random() * 4) + 1;
                 if (chance === 1){
-                    rewardImage.src = 'Light_Cone_Cornucopia.webp';
+                    rewardImage.src = 'Splash art\\Light_Cone_Cornucopia.webp';
                 } else if (chance === 2){
-                    rewardImage.src = 'Light_Cone_Adversarial.webp';
+                    rewardImage.src = 'Splash art\\Light_Cone_Adversarial.webp';
                 } else if (chance === 3){
-                    rewardImage.src = 'Light_Cone_Amber.webp';
+                    rewardImage.src = 'Splash art\\Light_Cone_Amber.webp';
                 } else if (chance === 4){
-                    rewardImage.src = 'Light_Cone_Collapsing_Sky.webp';
+                    rewardImage.src = 'Splash art\\Light_Cone_Collapsing_Sky.webp';
                 }
             }
         }

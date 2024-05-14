@@ -23,6 +23,15 @@
     }
 }
 
+@keyframes slideRight {
+    0% {
+        transform: translateX(-10%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
 body, html {
     margin: 0;
     padding: 0;
@@ -44,7 +53,7 @@ header {
     justify-content: center;
     align-items: center;
     transition: background-color 0.5s ease, transform 0.5s ease;
-    animation: slideDown 0.5s ease forwards;
+    animation: slideDown 1s ease forwards;
     z-index: 1000; /* Ensure the header is on top of other elements */
 }
 
@@ -63,6 +72,7 @@ header:hover {
 }
 
 
+/* Style for the left container */
 .left {
     position: fixed; /* Fix the left segment to the left side */
     top: 0;
@@ -81,15 +91,22 @@ header:hover {
     flex-direction: column; /* Arrange items vertically */
     align-items: center; /* Center items horizontally */
     gap: 20px; /* Add space between images */
+    animation: slideRight 1s ease forwards;
 }
 
-/* Add this to style images within the left container */
+/* Style for images within the left container */
 .left-img {
     width: 100%; /* Make images responsive */
     max-width: 100%; /* Prevent images from exceeding container width */
     height: auto; /* Maintain aspect ratio */
     border-radius: 10px; /* Optional: Add rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: Add shadow */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s;
+}
+
+.left-img:hover {       
+    transform: scale(1.1); /* Slightly enlarge the image on hover */
+    background-color: rgb(173, 230, 187); /* Change background color on hover */
 }
 
 .background-container {
@@ -107,7 +124,8 @@ header:hover {
     left: 0;
     height: 100%;
     width: 100%;
-    background: url('Character_Firefly_Introduction.webp') no-repeat center center/cover;
+    background: url('Character_Firefly_Introduction.webp') no-repeat center center;
+    background-size: cover; /* Ensure the image covers the entire area */
     filter: blur(20px);
     transform: scale(1.05); /* To cover any edge artifacts from blur */
 }
@@ -123,19 +141,22 @@ header:hover {
     z-index: 1;
 }
 
+
 .firefly-banner-container {
     position: absolute;
     top: 13%;
     left: 30%;
     transform: translate(-50%, -50%);
-    transform: scale(0.9);
     text-align: center; /* Align buttons horizontally */
+    transform: scale(0.9);
+    transition: transform 1s;
 }
 
 .firefly-banner-image {
     position: relative;
     z-index: 2;
     box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.7); /* Outer black shadow */
+    animation: slideRight 1s ease forwards;
 }
 
 .warp-buttons {
