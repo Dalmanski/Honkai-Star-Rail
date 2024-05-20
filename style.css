@@ -31,8 +31,8 @@
         transform: translateY(0);
     }
 }
-
-body, html {
+@media only screen and (min-width: 768px) {
+  body, html {
     margin: 0;
     padding: 0;
     height: 100%;
@@ -41,7 +41,7 @@ body, html {
     position: relative;
     overflow: hidden;
 }
-
+}
 header {
     position: fixed; /* Ensure the header is always at the top */
     width: 100%;
